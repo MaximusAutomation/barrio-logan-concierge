@@ -14,6 +14,7 @@
     "@ai-sdk/react": "^3.0.195",
     "ollama-ai-provider-v2": "^3.5.1",
     "@ai-sdk/anthropic": "^3.0.81",
+    "@ai-sdk/groq": "^3.0.39",
     "next": "^16.2.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

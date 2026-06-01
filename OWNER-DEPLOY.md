@@ -9,7 +9,7 @@ This document is the step-by-step guide.
 
 - The app builds cleanly: `npm run build` passes with no errors.
 - You have a GitHub account and the repo is pushed there (or on another Git host Vercel can connect to).
-- You have an Anthropic API key (get one at https://console.anthropic.com).
+- You have a free Groq API key (get one at https://console.groq.com — Settings → API Keys).
 
 ---
 
@@ -68,7 +68,7 @@ a single property needs. Cloudflare has no commercial-use restriction on free ti
 2. Vercel auto-detects Next.js. The `vercel.json` in the repo is already configured.
 3. Leave the build command as the Vercel default (`next build`).
 4. Do NOT set any env vars yet — do that in step 3.
-5. Click Deploy. The first deploy will fail or fall back to Ollama (no key set) — that is fine; you fix it in step 3.
+5. Click Deploy. The first deploy will fall back to Ollama (no key set) — that is fine; you fix it in step 3.
 
 ### Cloudflare Pages
 
@@ -83,26 +83,41 @@ a single property needs. Cloudflare has no commercial-use restriction on free ti
 
 **Never put your API key in the repo or in `.env.example`.**
 
-### Vercel
+### Vercel (Groq — recommended prod path)
 
 1. Project → Settings → Environment Variables.
 2. Add:
-   - `MODEL_PROVIDER` = `anthropic`
-   - `ANTHROPIC_API_KEY` = `sk-ant-...` (mark as **Secret**)
-   - `ANTHROPIC_MODEL` = `claude-haiku-4-5` (or leave unset — that is the default)
+   - `MODEL_PROVIDER` = `groq`
+   - `GROQ_API_KEY` = `gsk_...` (mark as **Secret** — get this from https://console.groq.com)
+   - `GROQ_MODEL` = `llama-3.3-70b-versatile` (optional — this is the default; omit to use default)
 3. Redeploy (Deployments → Redeploy, or push a commit).
 
-### Cloudflare
+### Cloudflare (Groq — recommended prod path)
 
 ```bash
-wrangler secret put ANTHROPIC_API_KEY
+wrangler secret put GROQ_API_KEY
 # paste your key at the prompt — it never appears in logs
 wrangler pages deploy --project-name <your-project>
 ```
 
 Also set plain vars in the dashboard:
+- `MODEL_PROVIDER` = `groq`
+- `GROQ_MODEL` = `llama-3.3-70b-versatile` (optional)
+
+### Alternative: Anthropic / Claude Haiku
+
+If you prefer to use Anthropic instead of Groq, get a key at https://console.anthropic.com and set:
+
+**Vercel:**
 - `MODEL_PROVIDER` = `anthropic`
-- `ANTHROPIC_MODEL` = `claude-haiku-4-5`
+- `ANTHROPIC_API_KEY` = `sk-ant-...` (mark as **Secret**)
+- `ANTHROPIC_MODEL` = `claude-haiku-4-5` (optional — that is the default)
+
+**Cloudflare:**
+```bash
+wrangler secret put ANTHROPIC_API_KEY
+```
+Plus dashboard vars: `MODEL_PROVIDER=anthropic`, `ANTHROPIC_MODEL=claude-haiku-4-5`.
 
 ---
 
@@ -149,13 +164,15 @@ Scan the QR with your phone (not the browser on your laptop — a real mobile de
 
 ## Prod model swap summary
 
-| Setting | Dev (.env.local) | Prod (host secrets) |
-|---|---|---|
-| `MODEL_PROVIDER` | `ollama` | `anthropic` |
-| `OLLAMA_BASE_URL` | `http://localhost:11434` | not needed |
-| `OLLAMA_MODEL` | `llama3.2` | not needed |
-| `ANTHROPIC_API_KEY` | not set | set as secret |
-| `ANTHROPIC_MODEL` | not set | `claude-haiku-4-5` (or omit for default) |
+| Setting | Dev (.env.local) | Prod/Groq (host secrets) | Prod/Anthropic (alt) |
+|---|---|---|---|
+| `MODEL_PROVIDER` | `ollama` | `groq` | `anthropic` |
+| `OLLAMA_BASE_URL` | `http://localhost:11434` | not needed | not needed |
+| `OLLAMA_MODEL` | `llama3.2` | not needed | not needed |
+| `GROQ_API_KEY` | not set | set as secret | not needed |
+| `GROQ_MODEL` | not set | `llama-3.3-70b-versatile` (or omit for default) | not needed |
+| `ANTHROPIC_API_KEY` | not set | not needed | set as secret |
+| `ANTHROPIC_MODEL` | not set | not needed | `claude-haiku-4-5` (or omit for default) |
 
 Zero code changes between dev and prod — only env vars differ.
 
@@ -178,15 +195,16 @@ Manual reset for testing: DevTools → Application → Local Storage → delete 
 
 ## Secrets checklist
 
-- [ ] `ANTHROPIC_API_KEY` set as a deployment secret (never in the repo)
+- [ ] `GROQ_API_KEY` set as a deployment secret (never in the repo)
 - [ ] `.env.local` is in `.gitignore` (already configured)
 - [ ] No real keys appear in `.env.example` (only placeholder comments)
-- [ ] `git log --all -p | grep "sk-ant"` returns nothing before first push
+- [ ] `git log --all -p | grep "gsk_"` returns nothing before first push
 
 ---
 
 ## Free-tier sources (verified May 2026)
 
+- Groq free tier: https://console.groq.com (no credit card required for free tier)
 - Vercel Hobby limits: https://vercel.com/docs/plans/hobby
 - Vercel limits reference: https://vercel.com/docs/limits
 - Cloudflare Pages limits: https://developers.cloudflare.com/pages/platform/limits/
