@@ -1,11 +1,11 @@
 {
   "property": {
-    "name": "{{PROPERTY_NAME}}",
+    "name": "Barrio Logan Guest Suite",
     "address": "325 S 30th St, San Diego, CA 92113",
     "neighborhood": "Logan Heights / Barrio Logan, San Diego, CA",
-    "wifi": { "ssid": "careeriem", "password": "{{WIFI_PASSWORD}}" },
-    "checkin": "{{CHECKIN}}",
-    "checkout": "{{CHECKOUT}}",
+    "wifi": { "ssid": "", "password": "" },
+    "checkin": "3:00 PM",
+    "checkout": "11:00 AM",
     "houseRules": []
   },
   "categories": [

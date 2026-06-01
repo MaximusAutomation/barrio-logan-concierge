@@ -17,8 +17,15 @@ export default function PropertyHeader({ property }: PropertyHeaderProps) {
   const displayName =
     !isToken(property.name) ? property.name : "Barrio Logan Guest Concierge";
 
+  // Show WiFi card only when BOTH ssid and password are present non-token values.
+  // Blank ("") or unfilled {{TOKEN}} values both suppress the card so guests
+  // never see a half-broken WiFi display. Owner adds WiFi by filling both
+  // fields in src/data/guide.json.
   const showWifi =
-    !isToken(property.wifi.ssid) || !isToken(property.wifi.password);
+    property.wifi.ssid.trim() !== "" &&
+    !isToken(property.wifi.ssid) &&
+    property.wifi.password.trim() !== "" &&
+    !isToken(property.wifi.password);
   const showCheckin = !isToken(property.checkin);
   const showCheckout = !isToken(property.checkout);
 
