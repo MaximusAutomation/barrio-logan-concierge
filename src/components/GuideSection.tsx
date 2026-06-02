@@ -4,6 +4,7 @@
  * Rendered client-side so tab state lives in React state.
  */
 import { useState } from "react";
+import Image from "next/image";
 import type { Category } from "@/lib/guide";
 import PlaceCard from "./PlaceCard";
 
@@ -14,6 +15,8 @@ interface GuideSectionProps {
 const CATEGORY_EMOJI: Record<string, string> = {
   grocery: "🛒",
   food: "🍽",
+  coffee: "☕",
+  bars: "🍺",
   beaches: "🏖",
   activities: "🎨",
   transit: "🚇",
@@ -58,6 +61,20 @@ export default function GuideSection({ categories }: GuideSectionProps) {
           aria-labelledby={`tab-${activeCategory.id}`}
           className="places-section"
         >
+          {/* Category banner image */}
+          {activeCategory.imageUrl && (
+            <div className="category-banner">
+              <Image
+                src={activeCategory.imageUrl}
+                alt={activeCategory.label}
+                width={680}
+                height={200}
+                className="category-banner__img"
+                priority={false}
+              />
+            </div>
+          )}
+
           <p className="places-section__title">
             {activeCategory.places.length}{" "}
             {activeCategory.places.length === 1 ? "spot" : "spots"}

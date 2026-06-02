@@ -1,7 +1,10 @@
 /**
  * PropertyHeader — shows property name, WiFi, check-in/out, and house rules.
+ * When property.imageUrl is set, it is shown as a hero behind the green gradient
+ * with a dark overlay to preserve WCAG-AA contrast on white text.
  * Token values (e.g. {{PROPERTY_NAME}}) are detected and hidden gracefully.
  */
+import Image from "next/image";
 import type { Property } from "@/lib/guide";
 
 /** Returns true when a value is still an unfilled {{TOKEN}} placeholder. */
@@ -15,7 +18,7 @@ interface PropertyHeaderProps {
 
 export default function PropertyHeader({ property }: PropertyHeaderProps) {
   const displayName =
-    !isToken(property.name) ? property.name : "Barrio Logan Guest Concierge";
+    !isToken(property.name) ? property.name : "325 Barrio";
 
   // Show WiFi card only when BOTH ssid and password are present non-token values.
   // Blank ("") or unfilled {{TOKEN}} values both suppress the card so guests
@@ -34,11 +37,30 @@ export default function PropertyHeader({ property }: PropertyHeaderProps) {
     (r) => r && !isToken(r)
   );
 
+  const hasHero = Boolean(property.imageUrl);
+
   return (
     <>
-      <header className="property-header">
+      <header className={`property-header${hasHero ? " property-header--has-hero" : ""}`}>
+        {/* Hero image sits behind the gradient overlay */}
+        {hasHero && property.imageUrl && (
+          <div className="property-header__hero-bg" aria-hidden="true">
+            <Image
+              src={property.imageUrl}
+              alt=""
+              fill
+              className="property-header__hero-img"
+              priority
+              sizes="100vw"
+            />
+            {/* Dark overlay ensures WCAG-AA contrast on white text */}
+            <div className="property-header__hero-overlay" />
+          </div>
+        )}
         <div className="property-header__inner">
           <h1 className="property-header__name">{displayName}</h1>
+          {/* Prominently surface the street address */}
+          <p className="property-header__address">325 S 30th St, Barrio Logan</p>
           <p className="property-header__neighborhood">
             {property.neighborhood}
           </p>

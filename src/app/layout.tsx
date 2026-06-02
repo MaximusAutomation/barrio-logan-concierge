@@ -5,9 +5,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Barrio Logan Guest Concierge",
+  title: "325 Barrio",
   description:
-    "Your local guide and AI concierge for your stay in Barrio Logan, San Diego.",
+    "Your local guide and AI concierge for your stay at 325 Barrio, Barrio Logan, San Diego.",
 };
 
 export const viewport: Viewport = {

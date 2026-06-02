@@ -1,5 +1,5 @@
 /**
- * System-prompt builder for the Barrio Logan Guest Concierge.
+ * System-prompt builder for the 325 Barrio Guest Concierge.
  *
  * Produces the PRD-spec persona prompt and injects the full guide.json as a
  * grounding block so the model never has to invent information.

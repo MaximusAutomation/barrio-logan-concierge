@@ -193,6 +193,24 @@ Manual reset for testing: DevTools → Application → Local Storage → delete 
 
 ---
 
+## Swapping in your own photos
+
+The guide supports optional images at three levels: property hero, category banner, and individual place thumbnail. All three use the same `imageUrl` field in `src/data/guide.json`.
+
+**To add a photo:**
+
+1. Place the image in `public/images/` (e.g. `public/images/my-place.jpg`), or use any publicly accessible `https://` URL.
+2. Set `imageUrl` on the relevant object in `src/data/guide.json`:
+   - Property hero: `"imageUrl": "/images/my-hero.jpg"` inside the `"property"` block.
+   - Category banner: `"imageUrl": "/images/food-banner.jpg"` inside a category object.
+   - Individual place: `"imageUrl": "/images/fish-guts.jpg"` inside a place object.
+3. If using an external host (not Unsplash), add it to `images.remotePatterns` in `next.config.ts` — same format as the existing Unsplash entry.
+4. Leave `imageUrl` absent (or remove the key) to render without a photo — all cards and headers degrade gracefully.
+
+When absent, place cards render text-only and category panels show no banner — no broken image, no layout shift.
+
+---
+
 ## Secrets checklist
 
 - [ ] `GROQ_API_KEY` set as a deployment secret (never in the repo)

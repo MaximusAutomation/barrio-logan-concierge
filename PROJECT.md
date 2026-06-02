@@ -61,12 +61,14 @@ Do not include generic “things to do in San Diego.” Only what a guest stayin
     "wifi": { "ssid": "{{WIFI_SSID}}", "password": "{{WIFI_PASSWORD}}" },
     "checkin": "{{CHECKIN}}",
     "checkout": "{{CHECKOUT}}",
-    "houseRules": ["string"]
+    "houseRules": ["string"],
+    "imageUrl": "string (optional — hero image URL shown in the property header)"
   },
   "categories": [
     {
-      "id": "grocery | food | beaches | activities | transit",
+      "id": "grocery | food | coffee | bars | beaches | activities | transit",
       "label": "string",
+      "imageUrl": "string (optional — category banner image shown above the places list)",
       "places": [
         {
           "name": "string",
@@ -78,7 +80,8 @@ Do not include generic “things to do in San Diego.” Only what a guest stayin
           "hours": "string",
           "priceLevel": "$ | $$ | $$$",
           "tags": ["string"],
-          "hostTip": "string"
+          "hostTip": "string",
+          "imageUrl": "string (optional — place photo; when absent the card renders without an image)"
         }
       ]
     }
