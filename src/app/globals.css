@@ -349,6 +349,11 @@ body {
   color: #1e40af;
 }
 
+.tier-badge--day-trip {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
 .place-card__blurb {
   font-size: 0.875rem;
   color: #444;

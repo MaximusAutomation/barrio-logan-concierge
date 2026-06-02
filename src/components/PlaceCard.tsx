@@ -13,11 +13,13 @@ interface PlaceCardProps {
 const TIER_LABELS: Record<Place["tier"], string> = {
   walk: "Walk",
   "short-hop": "Short hop",
+  "day-trip": "Day trip",
 };
 
 const TIER_EMOJI: Record<Place["tier"], string> = {
   walk: "🚶",
   "short-hop": "🚗",
+  "day-trip": "🗺",
 };
 
 export default function PlaceCard({ place }: PlaceCardProps) {
@@ -52,7 +54,7 @@ export default function PlaceCard({ place }: PlaceCardProps) {
       <div className="place-card__meta">
         <span className="place-card__meta-item">
           <span className="place-card__meta-icon" aria-hidden="true">
-            {place.tier === "walk" ? "🚶" : "🚗"}
+            {TIER_EMOJI[place.tier]}
           </span>
           {place.distanceText}
         </span>

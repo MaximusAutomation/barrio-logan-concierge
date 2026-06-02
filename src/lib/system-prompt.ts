@@ -14,18 +14,54 @@
 import type { Guide } from "@/lib/guide";
 
 /**
+ * Build a sanitized projection of the guide suitable for LLM grounding.
+ *
+ * Strips all imageUrl fields (property, category, and place level) before
+ * serialization so that Unsplash or other decorative image URLs are never
+ * presented to the model as factual data about the property or places.
+ * The UI still imports the raw guide.json directly — only this serialization
+ * path is sanitized.
+ */
+function sanitizeGuideForGrounding(guide: Guide): Guide {
+  // Strip imageUrl at all three levels (property, category, place) before
+  // serialization so decorative image URLs are not fed to the model as facts.
+  // omitKey is a tiny helper that avoids ESLint unused-var warnings from
+  // destructure-and-discard patterns.
+  function omitImageUrl<T extends { imageUrl?: string }>(
+    obj: T
+  ): Omit<T, "imageUrl"> {
+    const copy = { ...obj };
+    delete copy.imageUrl;
+    return copy;
+  }
+
+  return {
+    property: omitImageUrl(guide.property) as Guide["property"],
+    categories: guide.categories.map((cat) => ({
+      ...omitImageUrl(cat),
+      places: cat.places.map(
+        (place) => omitImageUrl(place) as Guide["categories"][number]["places"][number]
+      ),
+    })),
+  };
+}
+
+/**
  * Build the concierge system prompt from the provided guide object.
  *
- * The prompt embeds the full guide JSON so the model's only allowed
- * knowledge source is the guide — it cannot invent places, prices, or hours
- * that are not in the data.
+ * The prompt embeds a sanitized guide JSON (image URLs stripped) so the
+ * model's only allowed knowledge source is the guide content — it cannot
+ * invent places, prices, or hours that are not in the data. Image URLs are
+ * decorative and excluded so they are not treated as factual assertions.
  */
 export function buildSystemPrompt(guide: Guide): string {
   const { property } = guide;
 
-  // Serialize the entire guide for grounding. Pretty-printed so the model
-  // can parse it more reliably, at the cost of a few extra tokens.
-  const guideBlock = JSON.stringify(guide, null, 2);
+  // Serialize a sanitized copy of the guide (no imageUrls) for grounding.
+  // Pretty-printed so the model can parse it more reliably, at the cost of
+  // a few extra tokens.
+  const sanitizedGuide = sanitizeGuideForGrounding(guide);
+  const guideBlock = JSON.stringify(sanitizedGuide, null, 2);
 
   return `\
 You are a friendly, warm, and concise local host for ${property.name} at ${property.address} in ${property.neighborhood}.

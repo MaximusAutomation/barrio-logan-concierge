@@ -18,13 +18,13 @@ interface PropertyHeaderProps {
 
 export default function PropertyHeader({ property }: PropertyHeaderProps) {
   const displayName =
-    !isToken(property.name) ? property.name : "325 Barrio";
+    !isToken(property.name) ? property.name : "Barrio Logan Guest Concierge";
 
-  // Render address from data with token guard — falls back to raw street address.
+  // Render address from data with token guard — falls back to a generic placeholder.
   const displayAddress =
     property.address && !isToken(property.address)
       ? property.address
-      : "325 S 30th St, San Diego, CA 92113";
+      : "Address not configured";
 
   // Show WiFi card only when BOTH ssid and password are present non-token values.
   // Blank ("") or unfilled {{TOKEN}} values both suppress the card so guests
@@ -67,11 +67,10 @@ export default function PropertyHeader({ property }: PropertyHeaderProps) {
           <h1 className="property-header__name">{displayName}</h1>
           {/* Street address rendered from data with token guard */}
           <p className="property-header__address">{displayAddress}</p>
-          {/* Neighborhood — single consistent label; omitted if address already
-              carries the city context to avoid adjacent-line redundancy. */}
+          {/* Neighborhood — rendered from guide.json property.neighborhood */}
           {!isToken(property.neighborhood) && (
             <p className="property-header__neighborhood">
-              Barrio Logan · Logan Heights, San Diego
+              {property.neighborhood}
             </p>
           )}
           <div className="property-header__details">

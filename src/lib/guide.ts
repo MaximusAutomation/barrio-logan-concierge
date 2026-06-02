@@ -31,8 +31,8 @@ export interface Place {
   name: string;
   /** 1-2 sentence guest-facing description. */
   blurb: string;
-  /** walk = ≤15 min on foot; short-hop = ≤15 min by drive/transit/bike */
-  tier: "walk" | "short-hop";
+  /** walk = ≤15 min on foot; short-hop = ≤15 min by drive/transit/bike; day-trip = worth the drive, beyond ~15 min */
+  tier: "walk" | "short-hop" | "day-trip";
   /** Human-readable distance/time, e.g. "6 min walk" or "10 min drive" */
   distanceText: string;
   address: string;
