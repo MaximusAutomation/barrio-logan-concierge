@@ -42,6 +42,7 @@ import { getLanguageModel } from "@/lib/config";
 import { buildSystemPrompt } from "@/lib/system-prompt";
 import { buildTools } from "@/lib/tools";
 import { OUT_OF_QUOTA_MESSAGE } from "@/lib/rate-limit";
+import { checkServerRateLimit } from "@/lib/server-rate-limit";
 import guideData from "@/data/guide.json";
 import type { Guide } from "@/lib/guide";
 
@@ -59,6 +60,12 @@ const SYSTEM_PROMPT = buildSystemPrompt(guide);
 const tools = buildTools(guide);
 
 export async function POST(req: Request): Promise<Response> {
+  // ── Server-side abuse guard (additive, does NOT replace client-side 4/day cap) ──
+  // Rejects requests over ~15/min/IP before any model call is made.
+  // See src/lib/server-rate-limit.ts for the serverless-caveat comment.
+  const rateLimitResponse = checkServerRateLimit(req);
+  if (rateLimitResponse) return rateLimitResponse;
+
   const body = (await req.json()) as {
     messages: UIMessage[];
     outOfQuota?: boolean;
