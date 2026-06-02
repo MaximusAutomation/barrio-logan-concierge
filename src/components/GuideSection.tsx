@@ -31,6 +31,9 @@ export default function GuideSection({ categories }: GuideSectionProps) {
 
   return (
     <section aria-label="Local guide">
+      {/* Visually-hidden h2 preserves h1→h2→h3 heading order for screen readers */}
+      <h2 className="visually-hidden">Local guide</h2>
+
       {/* Category tabs */}
       <nav className="category-tabs" aria-label="Guide categories">
         <div className="category-tabs__inner" role="tablist">
@@ -61,14 +64,15 @@ export default function GuideSection({ categories }: GuideSectionProps) {
           aria-labelledby={`tab-${activeCategory.id}`}
           className="places-section"
         >
-          {/* Category banner image */}
+          {/* Category banner image — decorative; alt="" since the tab label already
+              names the category. Declared 680×213 matches CSS aspect-ratio 16:5. */}
           {activeCategory.imageUrl && (
             <div className="category-banner">
               <Image
                 src={activeCategory.imageUrl}
-                alt={activeCategory.label}
+                alt=""
                 width={680}
-                height={200}
+                height={213}
                 className="category-banner__img"
                 priority={false}
               />

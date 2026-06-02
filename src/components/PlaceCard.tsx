@@ -30,7 +30,7 @@ export default function PlaceCard({ place }: PlaceCardProps) {
             src={place.imageUrl}
             alt={place.name}
             width={640}
-            height={240}
+            height={360}
             className="place-card__thumb-img"
             loading="lazy"
           />

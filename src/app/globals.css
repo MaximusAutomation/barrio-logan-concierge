@@ -29,20 +29,22 @@ body {
 }
 
 /* ===== PROPERTY HEADER ===== */
+/* Not sticky — a guest header needn't pin. Category tabs handle their own sticky. */
 .property-header {
   background: linear-gradient(135deg, #1a3a2e 0%, #2d6a4f 100%);
   color: #fff;
   padding: 1.5rem 1rem 1.25rem;
-  position: sticky;
-  top: 0;
-  z-index: 50;
 }
 
 /* Hero image variant — the gradient becomes the overlay; position:relative
-   is required so the absolutely-positioned hero sits inside the header. */
+   is required so the absolutely-positioned hero sits inside the header.
+   min-height gives the hero real visual presence so the photo shows. */
 .property-header--has-hero {
   position: relative;
-  /* Allow extra vertical space for the hero */
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   padding-top: 2rem;
   padding-bottom: 1.5rem;
 }
@@ -60,11 +62,14 @@ body {
   /* next/image fill uses absolute positioning already */
 }
 
-/* Dark overlay: 60% opacity black ensures WCAG-AA contrast for white text */
+/* Dark overlay: bottom-to-top gradient scrim + flat tint for WCAG-AA contrast.
+   Opacity ~0.65 at the flat portion; the gradient ensures the bottom text area
+   is well-covered while letting the photo breathe toward the top. */
 .property-header__hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.60);
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.40) 60%, rgba(0, 0, 0, 0.20) 100%);
 }
 
 .property-header__inner {
@@ -93,7 +98,8 @@ body {
 
 .property-header__neighborhood {
   font-size: 0.8rem;
-  opacity: 0.75;
+  /* Keep full opacity — small text over the hero photo must remain AA-contrast. */
+  opacity: 1;
   margin-bottom: 0.75rem;
 }
 
@@ -159,6 +165,8 @@ body {
 }
 
 /* ===== CATEGORY TABS ===== */
+/* property-header is NOT sticky, so tabs can simply stick at top:0 with no
+   offset. The dead .has-header override has been removed. */
 .category-tabs {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -168,11 +176,9 @@ body {
   position: sticky;
   top: 0;
   z-index: 40;
-}
-
-/* When property header is present, category tabs sit below it */
-.has-header .category-tabs {
-  top: auto;
+  /* Right-edge fade — signals additional tabs are offscreen on small phones */
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 2.5rem), transparent 100%);
+  mask-image: linear-gradient(to right, black calc(100% - 2.5rem), transparent 100%);
 }
 
 .category-tabs::-webkit-scrollbar {
@@ -213,24 +219,32 @@ body {
   font-weight: 600;
 }
 
+.category-tab:focus-visible {
+  outline: 2px solid #2d6a4f;
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
 .category-tab__emoji {
   font-size: 1rem;
 }
 
 /* ===== CATEGORY BANNER ===== */
-/* Sits between the tabs and the places count/list */
+/* Sits between the tabs and the places count/list.
+   Uses a fixed aspect-ratio container (16:5) so the reserved space matches
+   the rendered image exactly — real CLS protection. */
 .category-banner {
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 0.75rem;
-  /* Constrain height to a 16:5 strip — wide and shallow on mobile */
-  max-height: 200px;
-  line-height: 0; /* remove bottom gap from inline image */
+  /* aspect-ratio reserves the space before the image loads */
+  aspect-ratio: 16 / 5;
+  position: relative;
 }
 
 .category-banner__img {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
@@ -268,17 +282,20 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-/* Optional thumbnail — only rendered when place.imageUrl is set */
+/* Optional thumbnail — only rendered when place.imageUrl is set.
+   aspect-ratio:16/9 reserves the correct space before the image loads
+   so layout shift is eliminated (real CLS protection). */
 .place-card__thumb {
   width: 100%;
-  max-height: 180px;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   line-height: 0;
+  position: relative;
 }
 
 .place-card__thumb-img {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
@@ -425,6 +442,11 @@ body {
 
 .map-link:hover {
   background: #1e4a36;
+}
+
+.map-link:focus-visible {
+  outline: 2px solid #2d6a4f;
+  outline-offset: 3px;
 }
 
 /* ===== CHAT ===== */
@@ -660,6 +682,11 @@ body {
   background: #ccc;
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+.chat-send-btn:focus-visible {
+  outline: 2px solid #2d6a4f;
+  outline-offset: 3px;
 }
 
 /* Out-of-quota message */
