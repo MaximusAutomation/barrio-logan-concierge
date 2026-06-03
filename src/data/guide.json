@@ -1,17 +1,19 @@
 {
   "property": {
-    "name": "Barrio Logan Guest Suite",
+    "name": "325 Barrio",
     "address": "325 S 30th St, San Diego, CA 92113",
     "neighborhood": "Logan Heights / Barrio Logan, San Diego, CA",
     "wifi": { "ssid": "", "password": "" },
     "checkin": "3:00 PM",
     "checkout": "11:00 AM",
-    "houseRules": []
+    "houseRules": [],
+    "imageUrl": "https://images.unsplash.com/photo-1514939775307-d44e7f10cabd?w=1600&q=70&auto=format&fit=crop"
   },
   "categories": [
     {
       "id": "grocery",
       "label": "Grocery & Markets",
+      "imageUrl": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=70&auto=format&fit=crop",
       "places": [
         {
           "name": "Northgate González Market",
@@ -66,6 +68,7 @@
     {
       "id": "food",
       "label": "Food & Drink",
+      "imageUrl": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=70&auto=format&fit=crop",
       "places": [
         {
           "name": "La Fachada",
@@ -92,18 +95,6 @@
           "hostTip": "This place sells out. On Saturday they open at 6 am and the tamales and rolled tacos are gone by 11. Arrive by 9 am any weekday to avoid the worst of the wait. The flour tortillas are thin, soft, and made to order — order a stack on the side."
         },
         {
-          "name": "Por Vida",
-          "blurb": "A café and galería in the heart of Barrio Logan serving horchata lattes, mazapán hot chocolate, and spicy lemonades alongside rotating Chicano and Latino artwork. The perfect spot to work, linger, or start the morning.",
-          "tier": "short-hop",
-          "distanceText": "18 min walk / 4 min drive",
-          "address": "2146 Logan Ave, San Diego, CA 92113",
-          "mapUrl": "https://maps.google.com/?q=Por+Vida+2146+Logan+Ave+San+Diego+CA",
-          "hours": "Daily 8:00 am – 6:00 pm",
-          "priceLevel": "$",
-          "tags": ["coffee", "cafe", "art", "horchata", "breakfast", "community"],
-          "hostTip": "Order the horchata latte — it's the move that everyone in the neighborhood gets. The art on the walls changes every few weeks and features local artists from Barrio Logan. Wifi is solid if you need to work remotely for a bit."
-        },
-        {
           "name": "Todo Pa' La Cruda",
           "blurb": "A Guerrerense seafood-and-hangover-cure joint with pozole, birria, mariscos, and caldo that locals swear heals whatever ails you. Unpretentious, generous portions, and genuinely great broth.",
           "tier": "short-hop",
@@ -128,22 +119,145 @@
           "hostTip": "Book ahead — they're small and fill up fast, especially on weekends. The cacio e pepe and the charcuterie board are both worth ordering. BYOB is allowed with a modest corkage fee, which helps keep the evening reasonable."
         },
         {
-          "name": "Mujeres Brew House",
-          "blurb": "The only Latina-owned brewery in San Diego, with a large beer garden, rotating food trucks, and house-brewed craft beers that lean toward approachable lagers and fruit-forward ales. Great outdoor vibe.",
+          "name": "Fish Guts",
+          "blurb": "A beloved Barrio Logan fish-taco spot turning out some of the city's best fish tacos and a killer fried fish sandwich, made with 90% sustainable, locally-sourced seafood. Don't miss the blackened swordfish taco with jalapeno slaw and spicy aioli.",
           "tier": "short-hop",
-          "distanceText": "17 min walk / 4 min drive",
-          "address": "1983 Julian Ave, San Diego, CA 92113",
-          "mapUrl": "https://maps.google.com/?q=Mujeres+Brew+House+1983+Julian+Ave+San+Diego+CA",
-          "hours": "Tue–Fri 4:00 pm – 10:00 pm; Sat–Sun 12:00 pm – 9:00 pm; Mon Closed",
+          "distanceText": "~16 min walk / 4 min drive",
+          "address": "2222 Logan Ave, San Diego, CA 92113",
+          "mapUrl": "https://maps.google.com/?q=Fish%20Guts%202222%20Logan%20Ave%2C%20San%20Diego%2C%20CA%2092113",
+          "hours": "Closed Mon-Tue; Wed-Fri 12pm-9pm; Sat-Sun 12pm-6pm",
           "priceLevel": "$$",
-          "tags": ["brewery", "beer-garden", "latina-owned", "food-trucks", "outdoor"],
-          "hostTip": "Check their Instagram the day of your visit to see which food truck is parked out front — the lineup changes. Their flagship horchata cream ale is fantastic and pairs well with whatever truck they've got going. The garden gets packed on warm Sunday afternoons, so arrive before 2 pm to grab a picnic table."
+          "tags": ["seafood", "fish tacos", "casual", "local favorite", "sustainable"],
+          "hostTip": "Closed Monday and Tuesday, so plan a midweek or weekend visit. Go early; the fresh catch can sell out and they keep shorter weekend hours."
+        },
+        {
+          "name": "El Carrito",
+          "blurb": "A charming all-day Mexican breakfast and lunch spot famously housed inside a restored 1930s streetcar. Come hungry for chilaquiles, machaca and eggs, and weekend menudo with hand-pressed tortillas.",
+          "tier": "short-hop",
+          "distanceText": "~16 min walk / 4 min drive",
+          "address": "2154 Logan Ave, San Diego, CA 92113",
+          "mapUrl": "https://maps.google.com/?q=El%20Carrito%202154%20Logan%20Ave%2C%20San%20Diego%2C%20CA%2092113",
+          "hours": "Daily 8am-6pm",
+          "priceLevel": "$",
+          "tags": ["breakfast", "brunch", "mexican", "casual", "menudo"],
+          "hostTip": "Great morning stop before exploring Chicano Park nearby. Weekends bring menudo and can get busy, so arrive a little early to beat the brunch crowd."
+        },
+        {
+          "name": "Fonda del Barrio",
+          "blurb": "An intimate spot serving ancestral Mexican cuisine and natural wines, perfect for a relaxed dinner out. Weekend mornings also bring a lovely brunch service.",
+          "tier": "short-hop",
+          "distanceText": "~16 min walk / 4 min drive",
+          "address": "2234 Logan Ave, San Diego, CA 92113",
+          "mapUrl": "https://maps.google.com/?q=Fonda%20del%20Barrio%202234%20Logan%20Ave%2C%20San%20Diego%2C%20CA%2092113",
+          "hours": "Closed Mon; Tue-Thu 4pm-10pm; Fri 4pm-11pm; Sat 9am-1:30pm & 4pm-11pm; Sun 9am-1:30pm & 4pm-10pm",
+          "priceLevel": "$$$",
+          "tags": ["mexican", "dinner", "wine bar", "brunch", "date night"],
+          "hostTip": "This is a sit-down dinner spot (dinner service starts at 4pm, closed Mondays). The split weekend hours mean a morning brunch window and an evening dinner window, so check timing before heading over."
+        },
+        {
+          "name": "Maggie's Cafe",
+          "blurb": "A friendly neighborhood breakfast-and-lunch cafe in the Mercado del Barrio plaza, beloved by locals for hearty American and Mexican-influenced plates. The kind of easygoing spot you'll want to make part of your routine.",
+          "tier": "short-hop",
+          "distanceText": "~15 min walk / 5 min drive",
+          "address": "1985 National Ave Suite 1129, San Diego, CA 92113",
+          "mapUrl": "https://maps.google.com/?q=Maggie%27s%20Cafe%201985%20National%20Ave%20Suite%201129%2C%20San%20Diego%2C%20CA%2092113",
+          "hours": "Mon 7:30am-3pm; Tue-Sat 7:30am-6pm; Sun 7:30am-3pm",
+          "priceLevel": "$$",
+          "tags": ["breakfast", "brunch", "lunch", "american", "casual"],
+          "hostTip": "Located inside the Mercado del Barrio shopping center, so there's easy parking. Note there's a separate Maggie's Cafe in Serra Mesa/Greyling Dr — you want the Barrio Logan / National Ave location."
+        }
+      ]
+    },
+    {
+      "id": "coffee",
+      "label": "Coffee Shops",
+      "imageUrl": "https://images.unsplash.com/photo-1503240700317-f9df07c1e79f?w=800&q=70&auto=format&fit=crop",
+      "places": [
+        {
+          "name": "Por Vida",
+          "blurb": "A beloved Barrio Logan cafe steeped in lowrider and Chicano culture, with Mexican-inspired coffee drinks and artwork-covered walls that make it a true neighborhood landmark. A must-visit for a morning cafe de olla or horchata latte.",
+          "tier": "short-hop",
+          "distanceText": "20 min walk / 5 min drive",
+          "address": "2146 Logan Ave, San Diego, CA 92113",
+          "mapUrl": "https://maps.google.com/?q=Por%20Vida%202146%20Logan%20Ave%2C%20San%20Diego%2C%20CA%2092113",
+          "hours": "Daily 8:00 AM - 6:00 PM",
+          "priceLevel": "$",
+          "tags": ["Mexican coffee", "lowrider culture", "local art", "instagrammable"],
+          "hostTip": "Order a cafe de olla or a horchata cold brew and take a few minutes to look at the lowrider and Chicano art covering the walls. Street parking can be tight on weekends, so the walk is often easier."
+        },
+        {
+          "name": "Cafe Moto",
+          "blurb": "A San Diego coffee institution roasting fair-trade, organic beans on-site at their solar-powered Barrio Logan roastery since 1990. The two-lane drive-thru, walk-up window, and street-side seating make it an easy stop for a serious cup.",
+          "tier": "walk",
+          "distanceText": "14 min walk / 4 min drive",
+          "address": "2619 National Ave, San Diego, CA 92113",
+          "mapUrl": "https://maps.google.com/?q=Cafe%20Moto%202619%20National%20Ave%2C%20San%20Diego%2C%20CA%2092113",
+          "hours": "Mon-Fri 6:00 AM - 3:00 PM, Sat-Sun 7:00 AM - 2:30 PM",
+          "priceLevel": "$$",
+          "tags": ["local roastery", "drive-thru", "walk-up window", "fair-trade"],
+          "hostTip": "It is the closest spot on foot and great for an early start since they open at 6 AM on weekdays. Grab a bag of their fresh-roasted beans to take home."
+        },
+        {
+          "name": "Chikita Cafe",
+          "blurb": "A charming woman-owned cafe known as one of the cutest spots in Barrio Logan, serving creative Mexican-inspired drinks like the Mexican mocha amid Frida Kahlo art and cozy decor. A small boutique of local gifts adds to the fun.",
+          "tier": "short-hop",
+          "distanceText": "25 min walk / 6 min drive",
+          "address": "1875 Newton Ave, San Diego, CA 92113",
+          "mapUrl": "https://maps.google.com/?q=Chikita%20Cafe%201875%20Newton%20Ave%2C%20San%20Diego%2C%20CA%2092113",
+          "hours": "Daily 7:00 AM - 4:00 PM",
+          "priceLevel": "$$",
+          "tags": ["Mexican mocha", "woman-owned", "cozy", "local gifts"],
+          "hostTip": "Try the Mexican mocha and grab a seat outside for neighborhood views. It is a small space that gets busy on weekend mornings, so go early."
+        },
+        {
+          "name": "Ryan Bros Coffee",
+          "blurb": "A spacious, airy roastery cafe with exposed brick, plenty of seating, and stocked bookshelves, making it a perfect spot for working, studying, or a relaxed coffee date. They roast their own beans right in Barrio Logan.",
+          "tier": "short-hop",
+          "distanceText": "28 min walk / 7 min drive",
+          "address": "1894 Main St, San Diego, CA 92113",
+          "mapUrl": "https://maps.google.com/?q=Ryan%20Bros%20Coffee%201894%20Main%20St%2C%20San%20Diego%2C%20CA%2092113",
+          "hours": "Mon-Fri 6:00 AM - 5:00 PM, Sat-Sun 7:00 AM - 5:00 PM",
+          "priceLevel": "$$",
+          "tags": ["local roastery", "laptop-friendly", "lots of seating", "spacious"],
+          "hostTip": "This is the best pick if you want room to spread out and work for a while. It stays open until 5 PM, later than most cafes nearby, so it is a good afternoon option."
+        }
+      ]
+    },
+    {
+      "id": "bars",
+      "label": "Bars & Breweries",
+      "imageUrl": "https://images.unsplash.com/photo-1603666413723-fd8b35434cba?w=800&q=70&auto=format&fit=crop",
+      "places": [
+        {
+          "name": "Mujeres Brew House",
+          "blurb": "San Diego's first Latina-owned and women-operated brewery, set in a colorful 200-plus-seat beer garden with rotating taco and food vendors daily. It's a warm, festive Barrio Logan staple that celebrates the neighborhood's culture and craft beer.",
+          "tier": "short-hop",
+          "distanceText": "approx. 25 min walk / 6 min drive",
+          "address": "1983 Julian Ave, San Diego, CA 92113",
+          "mapUrl": "https://maps.google.com/?q=Mujeres%20Brew%20House%201983%20Julian%20Ave%2C%20San%20Diego%2C%20CA%2092113",
+          "hours": "Tue-Fri 4pm-10pm, Sat-Sun 12pm-9pm; closed Mon (verify)",
+          "priceLevel": "$$",
+          "tags": ["brewery", "beer garden", "Latina-owned", "food vendors", "family-friendly"],
+          "hostTip": "Go on a weekend afternoon when the beer garden is liveliest and the taco vendor is set up. It's a quick drive or rideshare from the house, with easy street parking nearby."
+        },
+        {
+          "name": "Tiny Giant Taproom",
+          "blurb": "A community-focused taproom with 30-plus ice-cold taps spanning San Diego and Baja craft beer, plus ciders, kombucha, and non-alcoholic options. The kitchen turns out sandos, flatbreads, and more, making it an easy spot to settle in.",
+          "tier": "short-hop",
+          "distanceText": "approx. 28 min walk / 7 min drive",
+          "address": "1985 National Ave, Ste 1132, San Diego, CA 92113",
+          "mapUrl": "https://maps.google.com/?q=Tiny%20Giant%20Taproom%201985%20National%20Ave%2C%20Ste%201132%2C%20San%20Diego%2C%20CA%2092113",
+          "hours": "Mon-Sat 12pm-10pm, Sun 12pm-8pm (verify)",
+          "priceLevel": "$$",
+          "tags": ["taproom", "craft beer", "Baja beer", "food menu", "non-alcoholic options"],
+          "hostTip": "It's inside the Mercado del Barrio complex, so you can pair a flight here with shopping and murals nearby. Ask about their happy hour if you arrive in the early evening."
         }
       ]
     },
     {
       "id": "beaches",
       "label": "Beaches",
+      "imageUrl": "https://images.unsplash.com/photo-1505245208761-ba872912fac0?w=800&q=70&auto=format&fit=crop",
       "places": [
         {
           "name": "Coronado Beach",
@@ -192,12 +306,49 @@
           "priceLevel": "$",
           "tags": ["ferry", "water-views", "coronado", "transit", "scenic"],
           "hostTip": "Adult fare is $9 each way — buy tickets at the pier kiosk. The morning commuter runs (before 9 am weekdays) are free if you catch them. Sit on the starboard side heading toward Coronado for the best skyline views looking back at downtown."
+        },
+        {
+          "name": "Mission Beach Boardwalk",
+          "blurb": "A classic two-mile oceanfront boardwalk packed with sunbathers, surfers, cyclists, and the old-school Belmont Park amusement park with its wooden Giant Dipper roller coaster. It is the quintessential lively San Diego beach day, great for families and people-watching.",
+          "tier": "short-hop",
+          "distanceText": "~15-20 min drive (~9 mi)",
+          "address": "3146 Mission Blvd, San Diego, CA 92109",
+          "mapUrl": "https://maps.google.com/?q=Mission%20Beach%20Boardwalk%203146%20Mission%20Blvd%20San%20Diego%20CA%2092109",
+          "hours": "Beach open 24 hours (boardwalk best in daylight); Belmont Park rides typically ~11am-10pm, seasonal",
+          "priceLevel": "$",
+          "tags": ["beach", "boardwalk", "family-friendly", "amusement-park", "surfing"],
+          "hostTip": "There are free public lots on Ventura Place and along Mission Blvd near Belmont Park, but they fill fast on warm weekends and holidays, so arrive before 10am or come later in the afternoon. Note parking lots are closed 2am-4am."
+        },
+        {
+          "name": "Sunset Cliffs Natural Park",
+          "blurb": "Dramatic sandstone bluffs along the Point Loma peninsula with sweeping Pacific views, hidden sea caves, and arguably the best sunsets in San Diego. Bring a blanket, walk the clifftop paths, and watch the sky light up over the water.",
+          "tier": "short-hop",
+          "distanceText": "~15-20 min drive (~9 mi)",
+          "address": "705 Cornish Dr, San Diego, CA 92107",
+          "mapUrl": "https://maps.google.com/?q=Sunset%20Cliffs%20Natural%20Park%20705%20Cornish%20Dr%20San%20Diego%20CA%2092107",
+          "hours": "Park open 24 hours; parking lots closed 2am-4am year-round",
+          "priceLevel": "$",
+          "tags": ["cliffs", "sunset", "scenic-views", "hiking", "photography"],
+          "hostTip": "Free street parking and small lots line Sunset Cliffs Blvd, plus a free lot at Ladera St and Cornish Dr, but they pack out near sunset, so arrive 30-45 minutes early. Stay well back from the unfenced cliff edges as the bluffs are unstable and erode."
+        },
+        {
+          "name": "La Jolla Cove & Ellen Browning Scripps Park",
+          "blurb": "A postcard-perfect cove tucked among rocky cliffs, framed by the grassy palm-lined Scripps Park, with sea lions, snorkeling, and crystal-clear protected water. One of the most beautiful spots on the entire California coast.",
+          "tier": "day-trip",
+          "distanceText": "~25 min drive (~15 mi — a worth-it day trip)",
+          "address": "1100 Coast Blvd, La Jolla, CA 92037",
+          "mapUrl": "https://maps.google.com/?q=La%20Jolla%20Cove%20Ellen%20Browning%20Scripps%20Park%201100%20Coast%20Blvd%20La%20Jolla%20CA%2092037",
+          "hours": "Park 4am-8pm; cove beach open daily, lifeguards on duty ~9am to dusk",
+          "priceLevel": "$",
+          "tags": ["cove", "snorkeling", "sea-lions", "scenic-views", "swimming"],
+          "hostTip": "Parking is the main challenge here. Free street parking along Coast Blvd and through La Jolla Village fills early, so arrive before 10am or use a paid lot/structure in the village. For a wide sandy swimming beach instead, head a few minutes north to La Jolla Shores (8300 Camino Del Oro) which has a large lot at Kellogg Park."
         }
       ]
     },
     {
       "id": "activities",
       "label": "Things to Do",
+      "imageUrl": "https://images.unsplash.com/photo-1560350894-68244ac04656?w=800&q=70&auto=format&fit=crop",
       "places": [
         {
           "name": "Chicano Park",
@@ -276,6 +427,7 @@
     {
       "id": "transit",
       "label": "Getting Around",
+      "imageUrl": "https://images.unsplash.com/photo-1493048529683-6f2371639710?w=800&q=70&auto=format&fit=crop",
       "places": [
         {
           "name": "Barrio Logan Blue Line Trolley Station",

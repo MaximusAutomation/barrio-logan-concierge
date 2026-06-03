@@ -121,7 +121,7 @@ export default function ChatSection() {
       <div className="chat-section__header">
         <h2 className="chat-section__title">Ask your concierge</h2>
         <p className="chat-section__subtitle">
-          Answers from your local guide — neighborhood experts only!
+          Local answers for your stay at 325 S 30th St — guide-powered, neighborhood-focused.
         </p>
       </div>
 

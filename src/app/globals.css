@@ -29,31 +29,77 @@ body {
 }
 
 /* ===== PROPERTY HEADER ===== */
+/* Not sticky — a guest header needn't pin. Category tabs handle their own sticky. */
 .property-header {
   background: linear-gradient(135deg, #1a3a2e 0%, #2d6a4f 100%);
   color: #fff;
   padding: 1.5rem 1rem 1.25rem;
-  position: sticky;
-  top: 0;
-  z-index: 50;
+}
+
+/* Hero image variant — the gradient becomes the overlay; position:relative
+   is required so the absolutely-positioned hero sits inside the header.
+   min-height gives the hero real visual presence so the photo shows. */
+.property-header--has-hero {
+  position: relative;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+/* Hero background container — fills the entire header */
+.property-header__hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.property-header__hero-img {
+  object-fit: cover;
+  object-position: center;
+  /* next/image fill uses absolute positioning already */
+}
+
+/* Dark overlay: bottom-to-top gradient scrim + flat tint for WCAG-AA contrast.
+   Opacity ~0.65 at the flat portion; the gradient ensures the bottom text area
+   is well-covered while letting the photo breathe toward the top. */
+.property-header__hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.40) 60%, rgba(0, 0, 0, 0.20) 100%);
 }
 
 .property-header__inner {
   max-width: 680px;
   margin: 0 auto;
+  /* Sit above the hero overlay */
+  position: relative;
+  z-index: 1;
 }
 
 .property-header__name {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.2;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
+}
+
+/* Street address line — prominently surfaces "325 S 30th St" */
+.property-header__address {
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.95;
+  margin-bottom: 0.15rem;
 }
 
 .property-header__neighborhood {
   font-size: 0.8rem;
-  opacity: 0.75;
+  /* Keep full opacity — small text over the hero photo must remain AA-contrast. */
+  opacity: 1;
   margin-bottom: 0.75rem;
 }
 
@@ -119,6 +165,8 @@ body {
 }
 
 /* ===== CATEGORY TABS ===== */
+/* property-header is NOT sticky, so tabs can simply stick at top:0 with no
+   offset. The dead .has-header override has been removed. */
 .category-tabs {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -128,11 +176,9 @@ body {
   position: sticky;
   top: 0;
   z-index: 40;
-}
-
-/* When property header is present, category tabs sit below it */
-.has-header .category-tabs {
-  top: auto;
+  /* Right-edge fade — signals additional tabs are offscreen on small phones */
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 2.5rem), transparent 100%);
+  mask-image: linear-gradient(to right, black calc(100% - 2.5rem), transparent 100%);
 }
 
 .category-tabs::-webkit-scrollbar {
@@ -173,8 +219,36 @@ body {
   font-weight: 600;
 }
 
+.category-tab:focus-visible {
+  outline: 2px solid #2d6a4f;
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
 .category-tab__emoji {
   font-size: 1rem;
+}
+
+/* ===== CATEGORY BANNER ===== */
+/* Sits between the tabs and the places count/list.
+   Uses a fixed aspect-ratio container (16:5) so the reserved space matches
+   the rendered image exactly — real CLS protection. */
+.category-banner {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+  /* aspect-ratio reserves the space before the image loads */
+  aspect-ratio: 16 / 5;
+  position: relative;
+}
+
+.category-banner__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 10px;
 }
 
 /* ===== PLACES GRID ===== */
@@ -203,12 +277,33 @@ body {
 .place-card {
   background: #fff;
   border-radius: 12px;
-  padding: 1rem;
+  overflow: hidden; /* clip the thumbnail corners */
   border: 1px solid #e8e8e4;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
+/* Optional thumbnail — only rendered when place.imageUrl is set.
+   aspect-ratio:16/9 reserves the correct space before the image loads
+   so layout shift is eliminated (real CLS protection). */
+.place-card__thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  line-height: 0;
+  position: relative;
+}
+
+.place-card__thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Padding only applies below the thumbnail (or wraps all content when no image) */
 .place-card__header {
+  padding: 1rem 1rem 0;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -254,11 +349,17 @@ body {
   color: #1e40af;
 }
 
+.tier-badge--day-trip {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
 .place-card__blurb {
   font-size: 0.875rem;
   color: #444;
   line-height: 1.5;
   margin-bottom: 0.6rem;
+  padding: 0 1rem;
 }
 
 .place-card__meta {
@@ -268,6 +369,7 @@ body {
   font-size: 0.78rem;
   color: #666;
   margin-bottom: 0.6rem;
+  padding: 0 1rem;
 }
 
 .place-card__meta-item {
@@ -286,6 +388,7 @@ body {
   flex-wrap: wrap;
   gap: 0.3rem;
   margin-bottom: 0.6rem;
+  padding: 0 1rem;
 }
 
 .tag {
@@ -305,7 +408,7 @@ body {
   font-size: 0.8rem;
   color: #166534;
   line-height: 1.5;
-  margin-bottom: 0.6rem;
+  margin: 0 1rem 0.6rem;
 }
 
 .place-card__host-tip-label {
@@ -318,6 +421,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  padding: 0 1rem 1rem;
 }
 
 .price-level {
@@ -343,6 +447,11 @@ body {
 
 .map-link:hover {
   background: #1e4a36;
+}
+
+.map-link:focus-visible {
+  outline: 2px solid #2d6a4f;
+  outline-offset: 3px;
 }
 
 /* ===== CHAT ===== */
@@ -578,6 +687,11 @@ body {
   background: #ccc;
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+.chat-send-btn:focus-visible {
+  outline: 2px solid #2d6a4f;
+  outline-offset: 3px;
 }
 
 /* Out-of-quota message */

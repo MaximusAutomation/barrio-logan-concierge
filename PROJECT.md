@@ -47,6 +47,7 @@ All distances/times are computed **from {{HOST_ADDRESS}}**. Every place is tiere
 
 - **walk** — ≤ ~15 min on foot
 - **short-hop** — ≤ ~15 min by drive / transit / bike (beaches, larger grocery, etc.)
+- **day-trip** — worth the drive but beyond ~15 min (e.g. La Jolla Cove at ~25 min); use sparingly for genuinely compelling destinations
 
 Do not include generic “things to do in San Diego.” Only what a guest staying at *this* address would actually use.
 
@@ -61,24 +62,27 @@ Do not include generic “things to do in San Diego.” Only what a guest stayin
     "wifi": { "ssid": "{{WIFI_SSID}}", "password": "{{WIFI_PASSWORD}}" },
     "checkin": "{{CHECKIN}}",
     "checkout": "{{CHECKOUT}}",
-    "houseRules": ["string"]
+    "houseRules": ["string"],
+    "imageUrl": "string (optional — hero image URL shown in the property header)"
   },
   "categories": [
     {
-      "id": "grocery | food | beaches | activities | transit",
+      "id": "grocery | food | coffee | bars | beaches | activities | transit",
       "label": "string",
+      "imageUrl": "string (optional — category banner image shown above the places list)",
       "places": [
         {
           "name": "string",
           "blurb": "string (1-2 sentences, guest-facing)",
-          "tier": "walk | short-hop",
+          "tier": "walk | short-hop | day-trip",
           "distanceText": "e.g. 6 min walk  /  10 min drive",
           "address": "string",
           "mapUrl": "https://maps.google.com/?q=...",
           "hours": "string",
           "priceLevel": "$ | $$ | $$$",
           "tags": ["string"],
-          "hostTip": "string"
+          "hostTip": "string",
+          "imageUrl": "string (optional — place photo; when absent the card renders without an image)"
         }
       ]
     }

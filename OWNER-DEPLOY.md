@@ -193,6 +193,46 @@ Manual reset for testing: DevTools → Application → Local Storage → delete 
 
 ---
 
+## Swapping in your own photos
+
+The guide supports optional images at three levels: property hero, category banner, and individual place thumbnail. All three use the same `imageUrl` field in `src/data/guide.json`.
+
+### Primary method — drop files into /public/images/ (recommended)
+
+This is the simplest approach and requires no configuration changes.
+
+1. Copy your photo into `public/images/` (e.g. `public/images/my-place.jpg`).
+2. Set `imageUrl` in `src/data/guide.json` using the public path:
+   - Property hero: `"imageUrl": "/images/my-hero.jpg"` inside the `"property"` block.
+   - Category banner: `"imageUrl": "/images/food-banner.jpg"` inside a category object.
+   - Individual place: `"imageUrl": "/images/my-place.jpg"` inside a place object.
+3. That's it — no `next.config.ts` change needed for local files.
+
+Good formats: JPEG (`.jpg`) for photos, PNG (`.png`) for logos/screenshots. Keep files under 500 KB for fast mobile loads.
+
+### External URLs
+
+If you prefer to host images on your own CDN or another service, you can reference a full `https://` URL as `imageUrl`. **You must also allowlist the host** in `next.config.ts` — otherwise Next.js will return a 500 error when it tries to optimise the image.
+
+To add an external host, open `next.config.ts` and add an entry to `remotePatterns`:
+
+```ts
+{
+  protocol: "https",
+  hostname: "your-cdn.example.com",
+},
+```
+
+The existing Unsplash entry shows the correct format.
+
+**Note:** Unsplash URLs already work out of the box. Any other external host needs its own entry.
+
+### Removing a photo
+
+Leave `imageUrl` absent (or delete the key) to render without a photo — place cards, category panels, and the property header all degrade gracefully to text-only with no broken image or layout shift.
+
+---
+
 ## Secrets checklist
 
 - [ ] `GROQ_API_KEY` set as a deployment secret (never in the repo)

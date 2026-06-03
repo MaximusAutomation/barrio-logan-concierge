@@ -1,7 +1,9 @@
 /**
  * PlaceCard — displays a single place entry with tier badge, meta, tags,
- * host tip, and a map link.
+ * host tip, and a map link. Renders an optional photo thumbnail when
+ * place.imageUrl is set; layout is unchanged when absent.
  */
+import Image from "next/image";
 import type { Place } from "@/lib/guide";
 
 interface PlaceCardProps {
@@ -11,16 +13,32 @@ interface PlaceCardProps {
 const TIER_LABELS: Record<Place["tier"], string> = {
   walk: "Walk",
   "short-hop": "Short hop",
+  "day-trip": "Day trip",
 };
 
 const TIER_EMOJI: Record<Place["tier"], string> = {
   walk: "🚶",
   "short-hop": "🚗",
+  "day-trip": "🗺",
 };
 
 export default function PlaceCard({ place }: PlaceCardProps) {
   return (
     <article className="place-card">
+      {/* Optional place thumbnail — rendered lazy when imageUrl is present */}
+      {place.imageUrl && (
+        <div className="place-card__thumb">
+          <Image
+            src={place.imageUrl}
+            alt={place.name}
+            width={640}
+            height={360}
+            className="place-card__thumb-img"
+            loading="lazy"
+          />
+        </div>
+      )}
+
       <div className="place-card__header">
         <h3 className="place-card__name">{place.name}</h3>
         <div className="place-card__badges">
@@ -36,7 +54,7 @@ export default function PlaceCard({ place }: PlaceCardProps) {
       <div className="place-card__meta">
         <span className="place-card__meta-item">
           <span className="place-card__meta-icon" aria-hidden="true">
-            {place.tier === "walk" ? "🚶" : "🚗"}
+            {TIER_EMOJI[place.tier]}
           </span>
           {place.distanceText}
         </span>
