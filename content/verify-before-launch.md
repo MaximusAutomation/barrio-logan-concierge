@@ -1,48 +1,141 @@
 # Host Verification Checklist — Before Launch
 
-These items were flagged during place research as needing owner confirmation
-before the guide goes live. Check each one against current Google Maps,
+These items were flagged during all-category re-research (web-verified 2026-06-03) as needing
+owner confirmation before the guide goes live. Check each one against current Google Maps,
 the venue's social media, or a quick phone call.
 
 ---
 
-## Identity / Address
+## Honest Walk-Distance Orientation
 
-- **Fish Guts (2222 Logan Ave)** — Web-verified OPEN (2026-06-02). Hours confirmed: Closed Mon-Tue; Wed-Fri 12pm-9pm; Sat-Sun 12pm-6pm. Entry retained in guide.
+**Read this first.** The property at 325 S 30th St sits in residential Logan Heights, about
+half a mile EAST of Barrio Logan's walkable commercial core. The immediate blocks are quiet,
+low-rise residential. Guests should not expect a "5-minute walk to everything."
 
-## Hours — Web-Verified OPEN
+**What is truly sub-5 min walk:**
+- **Sawaya Brothers Market (425 S 30th St)** — ~3 min, ONE BLOCK SOUTH on the same street.
+  This is the only true sub-5-min food/grocery option. Verified open daily ~6am-9pm.
+- **Memorial Community Park & skatepark (30th St & Ocean View Blvd)** — ~5 min south on
+  30th St (borderline). Closest green space and the historic heart of old Calle Treinta.
+- **MTS bus stops at Imperial Ave & 30th and National Ave & 30th** — ~2-3 min (one block
+  north/south). Genuine transit access, though these are stops, not destinations.
 
-The following three venues were web-verified open as of 2026-06-02:
+**The realistic picture for everything else:**
+- Nearest specialty coffee (Cafe Moto, 2619 National Ave): **~8 min walk**.
+- Nearest trolley (25th & Commercial, Orange Line): **~12 min walk**.
+- Logan Ave brewery/mural corridor (Por Vida, Mason Ale Works, Ciccia, etc.): **~12-17 min walk**.
+- Chicano Park: **~14 min walk**.
+- Mercado del Barrio / Northgate Market: **~20 min walk**.
 
-- **Tiny Giant Taproom (1985 National Ave, Ste 1132)** — VERIFIED OPEN. Confirmed hours: Mon-Sat 12pm-10pm, Sun 12pm-8pm. Note: this is a separate unit from Attitude Brewing (which is closed) in the same Mercado del Barrio complex.
-- **Maggie's Cafe (1985 National Ave Suite 1129)** — VERIFIED OPEN at the Barrio Logan / National Ave location. Confirmed hours: Mon 7:30am-3pm; Tue-Sat 7:30am-6pm; Sun 7:30am-3pm. Remind guests this is NOT the separate Serra Mesa/Greyling Dr location.
-- **Fish Guts (2222 Logan Ave)** — VERIFIED OPEN. Confirmed hours: Closed Mon-Tue; Wed-Fri 12pm-9pm; Sat-Sun 12pm-6pm.
+All walk times are estimated from map coordinates at ~3 mph. Verify exact minutes in
+Google/Apple Maps before publishing any specific walking claims.
 
-## Hours Still to Verify Before Launch
+---
 
-- **Fonda del Barrio** — Split weekend schedule (brunch 9am-1:30pm + dinner from 4pm Sat-Sun); opened 2025 and is relatively new. Confirm current hours and whether reservations are recommended.
-- **El Carrito** — Low risk; confirm daily 8am-6pm hours are still current.
-- **Por Vida** — Daily 8am-6pm hours can shift seasonally and around neighborhood events. Confirm before launch.
-- **Cafe Moto** — Closes earlier than most cafes (Mon-Fri 3pm, Sat-Sun 2:30pm). Verify hours so guests are not surprised.
-- **Chikita Cafe** — Confirm daily 7am-4pm hours and that the boutique is open during visits.
-- **Ryan Bros Coffee** — Confirm this is the Barrio Logan / Main St location and not one of their other San Diego shops; verify hours (Mon-Fri 6am-5pm, Sat-Sun 7am-5pm).
-- **Mujeres Brew House** — Confirm current hours and Monday closure (can change for events). The food depends on the day's rotating vendor; confirm a vendor will be on-site if a guest is going specifically to eat.
+## Critical: Mujeres Brew House Alcohol-License Suspension
 
-## Bars / Breweries Excluded From the Guide
+**Mujeres Brew House (1983 Julian Ave)** — As of June 2026, Mujeres was under a 15-day
+alcohol-license suspension, with service potentially NOT resuming until after June 4, 2026.
+The brewery publicly warned it could close without a resolution. The guide entry reflects
+this with a clear heads-up in the hostTip and an "uncertain" status caveat in the hours.
 
-The following three venues were researched and deliberately excluded due to closure or unverified addresses. Do NOT add them back without independent confirmation:
+**Action required:** Check [@mujeresbrewhouse on Instagram](https://www.instagram.com/mujeresbrewhouse/)
+or call before recommending to guests. If the suspension has been lifted and the brewery
+is confirmed open, update the hours field to remove the caveat and update this note.
 
-- **Attitude Brewing Company (1985 National Ave, Ste 1115)** — Closed / for sale. Tiny Giant Taproom operates as a separate unit in the same complex and is open — do not confuse the two.
-- **Border X Brewing (2181 Logan Ave)** — The longtime Barrio Logan taproom is closed. The brand runs occasional pop-ups only. Do not send guests to the old address expecting an open taproom. Check their Instagram for pop-up locations if a guest is a craft-beer enthusiast.
-- **TapRoom Beer Company — Barrio Logan** — Exact street address is missing/unverified and hours are unknown. LOW CONFIDENCE. Confirm the location is open and has a verified address before adding it.
+---
 
-## Beach Logistics
+## Las Cuatro Milpas — May 2026 Reopening (Verify Smooth Operations)
 
-- **Drive times (web-verified 2026-06-02):** Mission Beach ~15-20 min (~9 mi); Sunset Cliffs ~15-20 min (~9 mi); La Jolla Cove ~25 min (~15 mi). These are reflected in the guide entries.
-- **Mission Beach Boardwalk** — Belmont Park ride hours shift seasonally and by day of week. Confirm current hours before guests visit the amusement park specifically.
-- **Sunset Cliffs Natural Park and La Jolla Cove** — Low risk for the venues themselves; main caveat is parking fills early. Remind guests to arrive before 10am (or 30-45 min before sunset at Cliffs) on busy weekends.
+**Las Cuatro Milpas (1985 National Ave, Suite 1131, Mercado del Barrio)** — Reopened in
+May 2026 at a new location inside Mercado del Barrio. The guide reflects the updated address
+and hours (Sun-Fri 8am-3pm, Sat 7am-3pm). Because this is a recent reopening, verify:
+- Operations are running smoothly and consistently.
+- Hours match what's published (small operations sometimes adjust in the first months).
+- The 1985 National Ave suite number (1131) is correct on signage.
+
+---
+
+## Cardenas Markets — Drive Only, Confirm Hours
+
+**Cardenas Markets (3807 National Ave)** — This is a drive-to destination, not a realistic
+walk. The guide entry has been corrected to reflect "not a realistic walk / ~6 min drive."
+Hours listed as "approx. 6:00 AM - 11:00 PM" are approximate. Call (619) 239-4709 to
+confirm exact hours before recommending for late trips.
+
+---
+
+## Hours to Verify Before Launch
+
+The following venues have hours that were best-estimate or are known to shift:
+
+| Venue | Listed Hours | Why to Verify |
+|-------|-------------|---------------|
+| **Fonda del Barrio** (1985 Logan Ave) | Daily approx. 9am-8pm | New-ish spot; hours and address may have changed |
+| **Todo Pa' La Cruda** (2226 Logan Ave) | Daily approx. 9am-3pm | Small barrio kitchen; hours shift seasonally |
+| **Alchemy / Choose Thy Poison** (2210 Logan Ave) | Daily approx. 4pm-11pm | Address and hours are best-estimate; verify before launching |
+| **Logan Inn** (2143 Logan Ave) | Wed-Mon ~10am-2am; Tue closed | Old-school dive; call ahead to confirm |
+| **Drinky Promise** (2085 Logan Ave) | Tue 8:30am-2:30pm, Wed-Fri 7:30am-3:30pm, Sat-Sun 9am-4pm | Closed Mon; confirm current schedule |
+| **The Shop Cafe** (1684 Logan Ave) | Mon-Fri 7am-11am, Sat-Sun 8am-1pm | Very short morning-only hours; confirm they haven't expanded |
+| **La Bodega Gallery** (2196 Logan Ave) | Typically Mon-Fri 12pm-5pm | Their website may be outdated; check Instagram @labodegagallery |
+| **El Rancho Tacos & Grill** (2181 Logan Ave) | Sun-Thu 8am-9pm, Fri-Sat 8am-10pm | Verify the suite/tenant at 2181 Logan (space has changed hands recently) |
+
+---
+
+## Address Cluster Alert: 2181 Logan Ave
+
+The synth flagged that **Mason Ale Works, El Rancho Tacos & Grill, and formerly Border X
+Brewing** are all associated with addresses at or near 2181 Logan Ave. Mason Ale Works
+now occupies the old Border X space. El Rancho's listing at 2181 Logan should be
+confirmed independently — it's possible they share the address or that the suite mix has
+shifted again since research.
+
+---
+
+## Border X Brewing — Do Not Add Back
+
+Border X Brewing's Barrio Logan brewpub at 2181 Logan Ave **permanently closed at the end
+of 2024**. That space is now Mason Ale Works. Border X does occasional pop-ups in Old Town
+only. Do not add it to the guide unless and until they reopen a permanent Barrio Logan
+location.
+
+---
+
+## Beaches — Drive Times Confirmed
+
+Drive times verified for the beach and outdoor entries:
+- Coronado Beach: ~12 min drive
+- Coronado Dog Beach: ~13 min drive
+- Coronado Tidelands Park: ~10 min drive
+- Embarcadero / Seaport Village: ~12 min drive
+- Silver Strand State Beach: ~18 min drive (day-trip)
+- Imperial Beach: ~20 min drive (day-trip)
+- Sunset Cliffs Natural Park: ~20 min drive (day-trip)
+- Ocean Beach: ~18 min drive (day-trip)
+- Mission Beach / Belmont Park: ~20 min drive (day-trip)
+- La Jolla Cove: ~22 min drive (day-trip)
+
+Distances are estimated from 325 S 30th St and do not account for traffic. Verify exact
+times in Google Maps at launch.
+
+---
 
 ## Images — Owner Action Required
 
-- **Hero image and category-banner images** are currently decorative Unsplash placeholders. They are functional and display well, but the owner should swap them for real photos of the property and neighborhood before launch. Replace by updating the `imageUrl` fields in `src/data/guide.json` (property.imageUrl and each category's imageUrl) to point to your own hosted images.
-- **Place-level imageUrl** fields are intentionally left out of existing entries (infrastructure is in place). The owner can add individual place photos by filling in `imageUrl` on any place entry — the card renders the thumbnail automatically when the field is present.
+- **Hero image and category-banner images** are currently decorative Unsplash placeholders.
+  They are functional and display well, but the owner should swap them for real photos of
+  the property and neighborhood before launch. Update the `imageUrl` fields in
+  `src/data/guide.json` (property.imageUrl and each category's imageUrl).
+- **Place-level imageUrl** fields are intentionally omitted (infrastructure is in place).
+  Add individual place photos by setting `imageUrl` on any place entry — the card renders
+  the thumbnail automatically.
+
+---
+
+## General Hours Caveat
+
+Small barrio kitchens, cafes, galleries, and dive bars adjust schedules frequently —
+seasonally, for neighborhood events, and sometimes just because. All hours in this guide
+are best-available as of June 2026. Spot-check each listing's current hours in Google Maps
+or on the venue's Instagram/Facebook close to launch, and again any time you update the
+guide.
