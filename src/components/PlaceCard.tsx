@@ -2,6 +2,11 @@
  * PlaceCard — displays a single place entry with tier badge, meta, tags,
  * host tip, and a map link. Renders an optional photo thumbnail when
  * place.imageUrl is set; layout is unchanged when absent.
+ *
+ * When place.booking is present a "Book" CTA is rendered that routes through
+ * /go/<partner> — a server-side click-tracked redirect (see src/app/go/[partner]/route.ts).
+ * The raw affiliate URL is never emitted into the markup; it lives server-side in
+ * src/lib/partners.ts.
  */
 import Image from "next/image";
 import type { Place } from "@/lib/guide";
@@ -89,15 +94,33 @@ export default function PlaceCard({ place }: PlaceCardProps) {
         <span className="price-level" aria-label={`Price level: ${place.priceLevel}`}>
           {place.priceLevel}
         </span>
-        <a
-          href={place.mapUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="map-link"
-          aria-label={`Open ${place.name} in Google Maps`}
-        >
-          <span aria-hidden="true">📍</span> Map
-        </a>
+
+        <div className="place-card__footer-actions">
+          {/* Book CTA — only rendered when place.booking is present.
+              Routes through /go/<partner> for click-tracked affiliate redirect.
+              Raw affiliate URL is never exposed in the markup. */}
+          {place.booking && (
+            <a
+              href={`/go/${place.booking.partner}`}
+              target="_blank"
+              rel="noopener noreferrer nofollow sponsored"
+              className="book-link"
+              aria-label={`Book ${place.booking.label ?? place.name}`}
+            >
+              {place.booking.label ?? "Book"}
+            </a>
+          )}
+
+          <a
+            href={place.mapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="map-link"
+            aria-label={`Open ${place.name} in Google Maps`}
+          >
+            <span aria-hidden="true">📍</span> Map
+          </a>
+        </div>
       </div>
     </article>
   );

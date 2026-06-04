@@ -26,6 +26,19 @@ export interface Property {
   imageUrl?: string;
 }
 
+/**
+ * Optional booking field — links a place to a bookable partner service.
+ * The `partner` value is a key in src/lib/partners.ts.
+ * The resolved booking URL is NEVER embedded in guide.json or emitted to the
+ * LLM grounding block — only the partner key travels with the data.
+ */
+export interface BookingInfo {
+  /** Key into the PARTNERS map in src/lib/partners.ts. */
+  partner: string;
+  /** Optional override label for the CTA button. Falls back to partner config label. */
+  label?: string;
+}
+
 /** A single place entry within a category. */
 export interface Place {
   name: string;
@@ -43,12 +56,19 @@ export interface Place {
   hostTip: string;
   /** Optional photo URL for this place. When absent the card renders without an image. */
   imageUrl?: string;
+  /**
+   * Optional booking link. When present, PlaceCard renders a "Book" CTA that
+   * routes through /go/<partner> for click-tracked affiliate redirection.
+   * The resolved URL is kept server-side in partners.ts — it does NOT appear
+   * in guide.json, the LLM grounding block, or client-rendered markup.
+   */
+  booking?: BookingInfo;
 }
 
 /** A named category containing a list of places. */
 export interface Category {
   /** Must be one of the canonical category IDs. */
-  id: "grocery" | "food" | "coffee" | "bars" | "beaches" | "activities" | "transit";
+  id: "grocery" | "food" | "coffee" | "bars" | "beaches" | "activities" | "transit" | "services";
   label: string;
   places: Place[];
   /** Optional banner image URL shown above the places list for this category. */

@@ -718,6 +718,64 @@
           "hostTip": "At ~6 miles a rideshare runs roughly 15 minutes outside rush hour. Lyft and Uber pick up at the designated airport rideshare zones — follow the signs after baggage claim rather than the curb out front."
         }
       ]
+    },
+    {
+      "id": "services",
+      "label": "Book & Get Around",
+      "places": [
+        {
+          "name": "Airport Transfer",
+          "blurb": "Skip the rideshare surge and pre-book a fixed-price transfer to or from San Diego International (SAN), just 13–18 minutes away. Jayride compares shuttle, sedan, and shared-van options in one search.",
+          "tier": "short-hop",
+          "distanceText": "book ahead",
+          "address": "San Diego International Airport (SAN), 3225 N Harbor Dr",
+          "mapUrl": "https://maps.google.com/?q=San+Diego+International+Airport",
+          "hours": "varies — book in advance",
+          "priceLevel": "$$",
+          "tags": ["airport", "transfer", "shuttle", "book-ahead"],
+          "hostTip": "Fixed-price pre-booking means no surge pricing — especially worth it for early-morning or late-night flights when rideshare demand spikes.",
+          "booking": { "partner": "airport-transfer" }
+        },
+        {
+          "name": "E-Bike Rental",
+          "blurb": "Explore the Embarcadero waterfront, Coronado Island, or the Logan Heights murals on two wheels. E-bike rentals let you cover more ground without breaking a sweat — perfect for a half-day adventure.",
+          "tier": "short-hop",
+          "distanceText": "book ahead",
+          "address": "Embarcadero / various San Diego locations",
+          "mapUrl": "https://maps.google.com/?q=Wheel+Fun+Rentals+San+Diego+Embarcadero",
+          "hours": "varies by location — typically 9 AM – sunset",
+          "priceLevel": "$$",
+          "tags": ["bike", "e-bike", "outdoor", "waterfront", "active"],
+          "hostTip": "The Embarcadero bike path runs uninterrupted from downtown all the way to Coronado — on an e-bike you can do the whole loop in a couple of hours without getting tired.",
+          "booking": { "partner": "ebike" }
+        },
+        {
+          "name": "Tours & Experiences",
+          "blurb": "Book guided tours of Chicano Park murals, harbor cruises, kayak rentals, Old Town food tours, and more — all departing from or near San Diego. Great for a first visit or a special day.",
+          "tier": "short-hop",
+          "distanceText": "book ahead",
+          "address": "Various departure points around San Diego",
+          "mapUrl": "https://maps.google.com/?q=Chicano+Park+San+Diego",
+          "hours": "varies by tour",
+          "priceLevel": "$$",
+          "tags": ["tours", "guided", "chicano-park", "harbor", "experiences"],
+          "hostTip": "The Chicano Park mural walking tour is a must if you're curious about the neighborhood's history — search for 'Chicano Park' on the booking site to find guided options.",
+          "booking": { "partner": "tours" }
+        },
+        {
+          "name": "Beach Gear Rental",
+          "blurb": "Get beach chairs, umbrellas, boogie boards, and a full beach setup delivered to your door — or rent baby gear (pack-n-play, high chair, stroller) if you're traveling with little ones. BabyQuip delivers across San Diego.",
+          "tier": "short-hop",
+          "distanceText": "book ahead — delivery to this address",
+          "address": "Delivered to 325 S 30th St (or your beach destination)",
+          "mapUrl": "https://maps.google.com/?q=Coronado+Beach+San+Diego",
+          "hours": "varies — schedule delivery in advance",
+          "priceLevel": "$$",
+          "tags": ["beach", "gear", "delivery", "family", "baby-gear", "chairs", "umbrella"],
+          "hostTip": "Book the day before and choose delivery to this address — they'll drop off before you head out and pick up after you return. Way easier than hauling gear on the trolley.",
+          "booking": { "partner": "beach-gear" }
+        }
+      ]
     }
   ]
 }
