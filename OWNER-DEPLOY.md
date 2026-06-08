@@ -233,6 +233,75 @@ Leave `imageUrl` absent (or delete the key) to render without a photo — place 
 
 ---
 
+## Earning from bookings (affiliate setup)
+
+The app includes a "Book & Get Around" category with four bookable services — Airport Transfer, E-Bike Rental, Tours & Experiences, and Beach Gear Rental. Each one routes guests through `/go/<key>` (a server-side click-tracked redirect) to your affiliate booking link.
+
+**All partner URLs are currently PLACEHOLDERS.** The app works end-to-end right now (guests can tap "Book" and reach the partner's San Diego page) but you are not yet earning a commission. Follow the steps below to activate real affiliate links.
+
+### Step A — Join the affiliate programs
+
+Sign up for each program you want to activate:
+
+| Service | Program | Sign-up URL |
+|---|---|---|
+| Airport Transfer | Jayride Affiliates | https://www.jayride.com/affiliates |
+| Airport Transfer (alt) | Mozio Partner Program | https://www.mozio.com/en-us/partner/ |
+| E-Bike Rental | Wheel Fun Rentals (or local shop) | Contact the shop directly for a referral arrangement |
+| Tours & Experiences | Viator Affiliate Program | https://www.viatoraffiliates.com |
+| Tours & Experiences (alt) | GetYourGuide Partner Program | https://partner.getyourguide.com |
+| Beach Gear / Baby Gear | BabyQuip Partner Program | https://www.babyquip.com/partners or email partner@babyquip.com |
+
+Each program will provide you with an affiliate-tagged URL (often a custom link with your tracking ID embedded).
+
+### Step B — Paste your affiliate links into partners.ts
+
+Open `src/lib/partners.ts` in your editor. For each partner you've joined, replace the `url` value with your affiliate-tagged link:
+
+```ts
+// Before (placeholder):
+"airport-transfer": {
+  label: "Book Airport Transfer",
+  url: "https://www.jayride.com/airport-transfers/us/san-diego-international-airport/",
+  ...
+},
+
+// After (your affiliate link):
+"airport-transfer": {
+  label: "Book Airport Transfer",
+  url: "https://www.jayride.com/.../?ref=YOUR_AFFILIATE_ID",
+  ...
+},
+```
+
+Commit the change and redeploy — that is the entire update. No other files need changing.
+
+**Affiliate URLs are not secrets** — they are ordinary public links with your tracking ID in the query string. It is fine to commit them to the repo.
+
+### Step C — Read your click logs
+
+Every time a guest taps a "Book" button, the `/go/<partner>` route logs a JSON event to stdout:
+
+```json
+{ "event": "booking-click", "partner": "airport-transfer", "label": "Book Airport Transfer", "timestamp": "2026-06-03T..." }
+```
+
+To view these logs:
+
+- **Vercel:** Dashboard → your project → Functions tab → filter by `/go/` or search for `booking-click`.
+- **Cloudflare:** Workers & Pages → your project → Functions → Real-time Logs.
+
+These logs are your attribution record. The affiliate program's dashboard will show confirmed bookings and earnings separately.
+
+### Future phases (not in this PR)
+
+The following upsells are planned for later phases and are NOT included in Phase 1:
+
+- **Host-fulfilled upsells** — early check-in, late check-out, parking passes (handled by the owner directly, no affiliate link needed).
+- **B2B host licensing** — making this concierge available to other Airbnb hosts.
+
+---
+
 ## Secrets checklist
 
 - [ ] `GROQ_API_KEY` set as a deployment secret (never in the repo)
