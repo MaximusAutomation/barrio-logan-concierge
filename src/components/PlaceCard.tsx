@@ -7,9 +7,13 @@
  * /go/<partner> — a server-side click-tracked redirect (see src/app/go/[partner]/route.ts).
  * The raw affiliate URL is never emitted into the markup; it lives server-side in
  * src/lib/partners.ts.
+ *
+ * Booking clicks are also tracked client-side via the analytics module so the
+ * host can measure click-through attach rates alongside impression data.
  */
 import Image from "next/image";
 import type { Place } from "@/lib/guide";
+import { trackEvent } from "@/lib/analytics";
 
 interface PlaceCardProps {
   place: Place;
@@ -106,6 +110,12 @@ export default function PlaceCard({ place }: PlaceCardProps) {
               rel="noopener noreferrer nofollow sponsored"
               className="book-link"
               aria-label={`Book ${place.booking.label ?? place.name}`}
+              onClick={() =>
+                trackEvent("booking-click", {
+                  partner: place.booking!.partner,
+                  placeName: place.name,
+                })
+              }
             >
               {place.booking.label ?? "Book"}
             </a>

@@ -164,6 +164,214 @@ body {
   font-weight: 700;
 }
 
+/* ===== UPSELL SECTION ===== */
+/* Early check-in / late checkout request cards — positioned between
+   PropertyHeader and the guide tabs for maximum visibility. */
+.upsell-section {
+  background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+  border-bottom: 1px solid #e8e8e4;
+  padding: 1rem 1rem 1.25rem;
+}
+
+.upsell-section__inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.upsell-section__heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.15rem;
+}
+
+.upsell-section__subheading {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 0.75rem;
+}
+
+.upsell-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.upsell-card {
+  background: #fff;
+  border: 2px solid #e8e8e4;
+  border-radius: 10px;
+  padding: 0.85rem;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.upsell-card:hover {
+  border-color: #e8a000;
+}
+
+.upsell-card--selected {
+  border-color: #e8a000;
+  box-shadow: 0 0 0 2px rgba(232, 160, 0, 0.2);
+  background: #fffbeb;
+}
+
+.upsell-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.upsell-card__title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.upsell-card__price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2d6a4f;
+}
+
+.upsell-card__desc {
+  font-size: 0.78rem;
+  color: #555;
+  line-height: 1.4;
+  margin-bottom: 0.4rem;
+}
+
+.upsell-card__time-change {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+}
+
+.upsell-card__time-old {
+  color: #999;
+  text-decoration: line-through;
+}
+
+.upsell-card__time-arrow {
+  color: #e8a000;
+  font-weight: 700;
+}
+
+.upsell-card__time-new {
+  color: #2d6a4f;
+  font-weight: 700;
+}
+
+/* Upsell request form */
+.upsell-form {
+  background: #fff;
+  border: 1px solid #e8e8e4;
+  border-radius: 10px;
+  padding: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.upsell-form__note {
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.upsell-form__field {
+  margin-bottom: 0.5rem;
+}
+
+.upsell-form__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.2rem;
+}
+
+.upsell-form__input {
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border: 1.5px solid #d4d4c8;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  background: #fafaf8;
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.15s;
+  -webkit-appearance: none;
+}
+
+.upsell-form__input:focus {
+  border-color: #2d6a4f;
+  background: #fff;
+}
+
+.upsell-form__submit {
+  display: block;
+  width: 100%;
+  padding: 0.55rem;
+  margin-top: 0.35rem;
+  background: #e8a000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.upsell-form__submit:hover:not(:disabled) {
+  background: #c48500;
+}
+
+.upsell-form__submit:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.upsell-form__error {
+  color: #c0392b;
+  font-size: 0.78rem;
+  margin-top: 0.35rem;
+}
+
+/* Success state */
+.upsell-success {
+  background: #f0fdf4;
+  border: 1px solid #4ade80;
+  border-radius: 10px;
+  padding: 0.85rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.upsell-success__icon {
+  color: #16a34a;
+  font-size: 1.1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.upsell-success__text {
+  font-size: 0.85rem;
+  color: #166534;
+  line-height: 1.4;
+}
+
 /* ===== CATEGORY TABS ===== */
 /* property-header is NOT sticky, so tabs can simply stick at top:0 with no
    offset. The dead .has-header override has been removed. */
