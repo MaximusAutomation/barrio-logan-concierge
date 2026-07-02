@@ -1,7 +1,7 @@
 # Barrio Logan Guest Concierge — STATUS
 
-**Version:** 5
-**Last updated:** 2026-06-23 (v5 — guest-services upsell levers + analytics measurement layer on feat/upsell-levers; build green; PR pending)
+**Version:** 6
+**Last updated:** 2026-07-02 (v6 — PM self-review of PR #4 feat/upsell-levers complete; no blockers; reviews owed before merge)
 **State:** Feature branch `feat/upsell-levers` adds Lever 1 (early check-in / late checkout request flow) + Lever 2 (curated affiliate "Book it" links) + measurement dashboard. Build green (npm ci + typecheck + lint + next build, 8 routes). PR to be opened. Main is unchanged.
 
 ---
@@ -63,9 +63,42 @@ A single-property Airbnb guest microsite (curated local guide + AI concierge cha
 7. Optional: add WiFi credentials in `src/data/guide.json`.
 8. Optional: rename property from "325 Barrio" if preferred.
 
+## PR #4 self-review verdict (2026-07-02)
+
+**Branch:** `feat/upsell-levers` | **PR:** #4 | **Base:** `254404e` (main)
+**Build:** green (8 routes verified pre-push) | **mergeStateStatus:** CLEAN | **Vercel preview:** SUCCESS
+
+### Content vs. STATUS.md v5 — no drift
+All features described in v5 are confirmed in the diff: Lever 1 (UpsellSection, upsell-config.ts, /api/upsell-request), Lever 2 (partners.ts 4→7, guide.json services 4→7), measurement layer (analytics.ts, analytics-counters.ts, /api/analytics, /api/analytics/counters, /host/dashboard), system prompt rule 8, Chicano Park guardrail. Zero undocumented additions.
+
+### Self-review findings (surfaced, not blocking merge)
+
+1. **/host/dashboard unauthenticated (by design, noted in code).** The dashboard page is intentionally ungated for a solo-host micro-property. Before going live, the owner should understand that any guest who discovers `/host/dashboard` can view aggregate click/impression counts. Recommendation: add Vercel password protection or IP-restrict the route in a follow-up. NOT a blocker but needs owner awareness.
+
+2. **System prompt rule 8 hardcodes adjusted times.** Rule 8 in `system-prompt.ts` hardcodes "12:00 PM" and "2:00 PM" as string literals. These match `upsell-config.ts` defaults today, but if the owner later changes `adjustedTime` in the config, the concierge will still say the old times. Low risk at v1 since values match. Follow-up: template the times from config rather than hardcoding in the prompt string.
+
+3. **Server-side no length cap on `roomRef`/`note` fields.** `/api/upsell-request` validates `optionId` and `guestName` but does not cap length on the optional `roomRef` (client maxLength=100) and `note` (client maxLength=200) fields. A bypassed client could send large payloads that inflate log entries. Low risk at property scale. Follow-up: add `maxLength` validation server-side.
+
+4. **`meta` field in analytics events not size-capped server-side.** `/api/analytics` caps event name to 100 chars but does not validate size of `meta`. Fire-and-forget semantics mean this can't cause a guest-facing error, but a crafted beacon could inflate Vercel log storage. Negligible risk at ~24 guest-parties/month. Follow-up: add `JSON.stringify(meta).length` guard.
+
+### No secrets committed
+Verified: all partner URLs are public placeholder links (viator.com, babyquip.com, opentable.com). No API keys, tokens, or credentials in any file. `analytics-counters.ts` is server-only. `analytics.ts` guards `typeof window === "undefined"` for SSR.
+
+### Telemetry verified
+Events actually tracked (`upsell-impression`, `upsell-request`, `booking-impression`, `booking-click`) exactly match what the PR claims. No undisclosed telemetry.
+
+### Guardrail verified
+Chicano Park guardrail enforced in three places: (a) top-of-file comment in `partners.ts`, (b) explicit `CHICANO PARK NOTE` in the `tours` partner entry, (c) `guide.json` "Browse All Tours" entry removes all Chicano Park mural tour language. Old `hostTip` recommending "the Chicano Park mural walking tour" has been deleted.
+
+### Reviews owed at base 254404e before merge
+- [ ] **Adversarial review** — attempt to elicit out-of-scope concierge responses via the new rule 8 wording; attempt to abuse `/api/upsell-request` with malformed payloads; attempt to enumerate `/host/dashboard` data.
+- [ ] **Code review (skill @ high)** — full structural review of UpsellSection state machine, analytics beacon reliability, and /api/upsell-request validation completeness.
+
+**DO NOT MERGE** until both reviews complete. Merge decision is owner's or a top-level Claude session with adversarial-review + code-review tools.
+
 ## Active next action
 
-Push `feat/upsell-levers`, open PR, await owner review/merge. Then owner deploys and begins measuring attach rates.
+Awaiting adversarial-review and code-review (both at base `254404e`) before owner merges PR #4. No new agent work needed until those reviews complete. Then owner merges, sets Vercel env vars, deploys, and begins measuring attach rates.
 
 ## Quick-context pointers
 
@@ -87,3 +120,4 @@ Push `feat/upsell-levers`, open PR, await owner review/merge. Then owner deploys
 - v3 -- 2026-05-31 -- pm-barrio -- Groq provider added; build green; pushed to main.
 - v4 -- 2026-05-31 -- pm-barrio -- property tokens filled with defaults; WiFi blanked; build green; pushed to main.
 - v5 -- 2026-06-23 -- pm-barrio -- guest-services upsell levers (early/late checkout request flow + curated affiliate "Book it" links) + analytics measurement layer (client-side tracking, server beacons, host dashboard at /host/dashboard); partners expanded to 7; guide.json services category expanded to 7 bookable places; Chicano Park guardrail enforced; build green (8 routes); on feat/upsell-levers branch, PR pending.
+- v6 -- 2026-07-02 -- pm-barrio -- PM self-review of PR #4 (feat/upsell-levers) complete; no drift from v5 spec; no secrets; telemetry verified; guardrail confirmed; 4 low-severity follow-up items surfaced (dashboard auth, prompt time hardcoding, server-side field length caps); reviews owed listed (adversarial + code-review at base 254404e); STATUS records DO NOT MERGE until reviews complete.
