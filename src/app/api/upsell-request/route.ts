@@ -56,6 +56,20 @@ export async function POST(req: Request): Promise<Response> {
       );
     }
 
+    // Server-side length caps (client maxLength is not a security boundary)
+    if (typeof roomRef === "string" && roomRef.length > 100) {
+      return NextResponse.json(
+        { error: "roomRef too long (max 100 characters)" },
+        { status: 400 }
+      );
+    }
+    if (typeof note === "string" && note.length > 500) {
+      return NextResponse.json(
+        { error: "note too long (max 500 characters)" },
+        { status: 400 }
+      );
+    }
+
     // Look up the upsell option
     const option = getUpsellOption(optionId);
     if (!option) {
