@@ -2,11 +2,15 @@
 /**
  * GuideSection — category tabs + place cards for the local guide.
  * Rendered client-side so tab state lives in React state.
+ *
+ * Tracks booking-impression events when the services/bookable tab is viewed,
+ * so the host can measure how many guests see the booking cards.
  */
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import type { Category } from "@/lib/guide";
 import PlaceCard from "./PlaceCard";
+import { trackEvent } from "@/lib/analytics";
 
 interface GuideSectionProps {
   categories: Category[];
@@ -20,6 +24,7 @@ const CATEGORY_EMOJI: Record<string, string> = {
   beaches: "🏖",
   activities: "🎨",
   transit: "🚇",
+  services: "🎟",
 };
 
 export default function GuideSection({ categories }: GuideSectionProps) {
@@ -28,6 +33,15 @@ export default function GuideSection({ categories }: GuideSectionProps) {
   );
 
   const activeCategory = categories.find((c) => c.id === activeId) ?? categories[0];
+
+  // Track booking-impression when the services tab is viewed
+  const servicesImpressionTracked = useRef(false);
+  useEffect(() => {
+    if (activeId === "services" && !servicesImpressionTracked.current) {
+      servicesImpressionTracked.current = true;
+      trackEvent("booking-impression", { category: "services" });
+    }
+  }, [activeId]);
 
   return (
     <section aria-label="Local guide">

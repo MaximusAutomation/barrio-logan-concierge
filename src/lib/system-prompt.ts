@@ -12,6 +12,7 @@
  */
 
 import type { Guide } from "@/lib/guide";
+import { UPSELL_CONFIG } from "@/lib/upsell-config";
 
 /**
  * Build a sanitized projection of the guide suitable for LLM grounding.
@@ -53,6 +54,50 @@ function sanitizeGuideForGrounding(guide: Guide): Guide {
 }
 
 /**
+ * Build the upsell-related prompt fragments from UPSELL_CONFIG.
+ *
+ * This ensures the concierge never quotes stale prices, times, or
+ * availability — it always reflects the current config. If the section or
+ * individual options are disabled, the prompt instructs the model accordingly.
+ */
+function buildUpsellPromptParts(property: Guide["property"]): {
+  rule: string;
+  quickRef: string;
+} {
+  const enabledOptions = UPSELL_CONFIG.enabled
+    ? UPSELL_CONFIG.options.filter((o) => o.enabled)
+    : [];
+
+  if (enabledOptions.length === 0) {
+    return {
+      rule:
+        "8. EARLY CHECK-IN / LATE CHECKOUT: These options are not currently available. If a guest asks, let them know politely and suggest they contact the host directly.",
+      quickRef:
+        "- Early check-in / late checkout: Not currently available",
+    };
+  }
+
+  // Build human-readable descriptions from config values
+  const descriptions = enabledOptions.map((o) => {
+    const standardTime =
+      o.id === "early-checkin" ? property.checkin : property.checkout;
+    return `${o.title.toLowerCase()} (${o.adjustedTime} instead of ${standardTime}) for $${o.price}`;
+  });
+
+  const rule = `8. EARLY CHECK-IN / LATE CHECKOUT: If a guest asks about checking in early or checking out late, let them know they can request ${descriptions.join(" or ")}. Tell them to use the request cards at the top of the page, just below the property header. Requests are subject to availability — the host will confirm.`;
+
+  const quickRefLines = enabledOptions.map(
+    (o) =>
+      `- ${o.title} available: Yes (${o.adjustedTime}, $${o.price}, subject to availability)`
+  );
+
+  return {
+    rule,
+    quickRef: quickRefLines.join("\n"),
+  };
+}
+
+/**
  * Build the concierge system prompt from the provided guide object.
  *
  * The prompt embeds a sanitized guide JSON (image URLs stripped) so the
@@ -69,6 +114,9 @@ export function buildSystemPrompt(guide: Guide): string {
   const sanitizedGuide = sanitizeGuideForGrounding(guide);
   const guideBlock = JSON.stringify(sanitizedGuide, null, 2);
 
+  // Build upsell-related prompt parts from live config (not hardcoded values)
+  const upsell = buildUpsellPromptParts(property);
+
   return `\
 You are a friendly, warm, and concise local host for ${property.name} at ${property.address} in ${property.neighborhood}.
 
@@ -76,6 +124,7 @@ Your role is to help guests feel at home and make the most of their stay. You an
 - The property itself (WiFi, check-in/check-out, house rules, basics)
 - Nearby places listed in the guide (grocery stores, food, beaches, activities, getting around)
 - Bookable services (airport transfers, bike rentals, tours, beach gear) listed in the "Book & Get Around" section
+- Early check-in and late checkout options
 
 STRICT RULES:
 1. You may ONLY use information from the GUIDE DATA block below. Do not draw on any outside knowledge.
@@ -85,6 +134,7 @@ STRICT RULES:
 5. Use a warm, personal tone — like a knowledgeable neighbor, not a directory listing.
 6. When a guest has used all their daily questions and the out-of-quota message is shown, give a kind acknowledgment that the concierge resets at midnight.
 7. BOOKABLE SERVICES: When a guest asks about getting to/from the airport, renting a bike, finding tours or experiences, or getting beach gear — mention the relevant entry from the "Book & Get Around" category by name, describe what it offers, and tell them to tap the orange "Book" button on that card in the guide. Do NOT emit booking URLs, affiliate links, or any URL from the booking field — just refer guests to the card's button. The booking cards appear in the "Book & Get Around" tab of the guide.
+${upsell.rule}
 
 PROPERTY QUICK-REFERENCE:
 - Name: ${property.name}
@@ -94,6 +144,7 @@ PROPERTY QUICK-REFERENCE:
 - WiFi Password: ${property.wifi.password}
 - Check-in: ${property.checkin}
 - Check-out: ${property.checkout}
+${upsell.quickRef}
 - House Rules: ${property.houseRules.join("; ")}
 
 GUIDE DATA (your ONLY allowed knowledge source):
